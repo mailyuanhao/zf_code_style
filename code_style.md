@@ -1,121 +1,105 @@
 # C++ 风格指南
 
-- [C++ 风格指南](#c)
-    - [版本 0.1](#01)
-    - [背景](#)
-    - [头文件](#)
-        - [Self-contained 头文件](#self-contained)
-        - [#define 保护](#define)
-        - [前置声明](#)
-        - [内联函数](#)
-        - [#include 的路径及顺序](#include)
-    - [作用域](#)
-        - [命名空间](#)
-        - [匿名命名空间和静态变量](#)
-        - [非成员函数、静态成员函数和全局函数](#)
-        - [局部变量](#)
-        - [静态和全局变量](#)
-    - [类](#)
-        - [构造函数的职责](#)
-        - [隐式类型转换](#)
-        - [可拷贝类型和可移动类型](#)
-        - [结构体 VS. 类](#vs)
-        - [继承](#)
-        - [多重继承](#)
-        - [接口](#)
-        - [运算符重载](#)
-        - [存取控制](#)
-        - [声明顺序](#)
-    - [函数](#)
-        - [参数顺序](#)
-        - [编写简短函数](#)
-        - [引用参数](#)
-        - [函数重载](#)
-        - [缺省参数](#)
-        - [函数返回类型后置语法](#)
-    - [其他 C++ 特性](#c)
-        - [右值引用](#)
-        - [友元](#)
-        - [异常](#)
-        - [运行时类型识别](#)
-        - [类型转换](#)
-        - [流](#)
-        - [前置自增和自减](#)
-        - [const 用法](#const)
-        - [constexpr 用法](#constexpr)
-        - [整型](#)
-        - [64 位下的可移植性](#64)
-        - [预处理宏](#)
-        - [0, nullptr 和 NULL](#0--nullptr--null)
-        - [sizeof](#sizeof)
-        - [auto](#auto)
-        - [列表初始化](#)
-        - [Lambda 表达式](#lambda)
-        - [模板编程](#)
-        - [Boost 库](#boost)
-        - [C++11](#c11)
-    - [命名约定](#)
-        - [通用命名规则](#)
-        - [文件命名](#)
-        - [类型命名](#)
-        - [变量命名](#)
-        - [常量命名](#)
-        - [函数命名](#)
-        - [命名空间命名](#)
-        - [枚举命名](#)
-        - [宏命名](#)
-        - [命名规则的特例](#)
-    - [注释](#)
-        - [注释风格](#)
-        - [文件注释](#)
-        - [类注释](#)
-        - [函数注释](#)
-        - [变量注释](#)
-        - [实现注释](#)
-        - [标点, 拼写和语法](#)
-        - [TODO 注释](#todo)
-        - [弃用注释](#)
-    - [格式](#)
-        - [行长度](#)
-        - [非 ASCII 字符](#ascii)
-        - [空格还是制表位](#)
-        - [函数声明与定义](#)
-        - [Lambda 表达式](#lambda)
-        - [函数调用](#)
-        - [列表初始化格式](#)
-        - [条件语句](#)
-        - [循环和开关选择语句](#)
-        - [指针和引用表达式](#)
-        - [布尔表达式](#)
-        - [函数返回值](#)
-        - [变量及数组初始化](#)
-        - [预处理指令](#)
-        - [类格式](#)
-        - [构造函数初始值列表](#)
-        - [水平留白](#)
-        - [垂直留白](#)
-    - [结束语](#)
+1. [C++ 风格指南](#c-风格指南)
+    1. [版本 0.1](#版本-01)
+    2. [头文件](#头文件)
+        1. [#define 保护](#define-保护)
+        2. [前置声明](#前置声明)
+        3. [内联函数](#内联函数)
+        4. [#include 的路径及顺序](#include-的路径及顺序)
+    3. [作用域](#作用域)
+        1. [命名空间](#命名空间)
+        2. [匿名命名空间和静态变量](#匿名命名空间和静态变量)
+        3. [非成员函数、静态成员函数和全局函数](#非成员函数、静态成员函数和全局函数)
+        4. [局部变量](#局部变量)
+        5. [静态和全局变量](#静态和全局变量)
+    4. [类](#类)
+        1. [构造函数的职责](#构造函数的职责)
+        2. [隐式类型转换](#隐式类型转换)
+        3. [可拷贝类型和可移动类型](#可拷贝类型和可移动类型)
+        4. [结构体 VS. 类](#结构体-vs-类)
+        5. [继承](#继承)
+        6. [多重继承](#多重继承)
+        7. [接口](#接口)
+        8. [运算符重载](#运算符重载)
+        9. [存取控制](#存取控制)
+        10. [声明顺序](#声明顺序)
+    5. [函数](#函数)
+        1. [参数顺序](#参数顺序)
+        2. [编写简短函数](#编写简短函数)
+        3. [引用参数](#引用参数)
+        4. [函数重载](#函数重载)
+        5. [缺省参数](#缺省参数)
+        6. [函数返回类型后置语法](#函数返回类型后置语法)
+    6. [其他 C++ 特性](#其他-c-特性)
+        1. [右值引用](#右值引用)
+        2. [友元](#友元)
+        3. [类型转换](#类型转换)
+        4. [前置自增和自减](#前置自增和自减)
+        5. [const 用法](#const-用法)
+        6. [constexpr 用法](#constexpr-用法)
+        7. [预处理宏](#预处理宏)
+        8. [0, nullptr 和 NULL](#0-nullptr-和-null)
+        9. [sizeof](#sizeof)
+        10. [auto](#auto)
+        11. [列表初始化](#列表初始化)
+        12. [Lambda 表达式](#lambda-表达式)
+        13. [模板编程](#模板编程)
+        14. [C++11](#c11)
+    7. [命名约定](#命名约定)
+        1. [通用命名规则](#通用命名规则)
+        2. [文件命名](#文件命名)
+        3. [类型命名](#类型命名)
+        4. [变量命名](#变量命名)
+        5. [常量命名](#常量命名)
+        6. [函数命名](#函数命名)
+        7. [命名空间命名](#命名空间命名)
+        8. [枚举命名](#枚举命名)
+        9. [宏命名](#宏命名)
+        10. [命名规则的特例](#命名规则的特例)
+    8. [注释](#注释)
+        1. [注释风格](#注释风格)
+        2. [文件注释](#文件注释)
+        3. [类注释](#类注释)
+        4. [函数注释](#函数注释)
+        5. [变量注释](#变量注释)
+        6. [实现注释](#实现注释)
+        7. [标点, 拼写和语法](#标点-拼写和语法)
+        8. [TODO 注释](#todo-注释)
+        9. [弃用注释](#弃用注释)
+    9. [格式](#格式)
+        1. [行长度](#行长度)
+        2. [空格还是制表位](#空格还是制表位)
+        3. [函数声明与定义](#函数声明与定义)
+        4. [Lambda 表达式](#lambda-表达式)
+        5. [函数调用](#函数调用)
+        6. [列表初始化格式](#列表初始化格式)
+        7. [条件语句](#条件语句)
+        8. [循环和开关选择语句](#循环和开关选择语句)
+        9. [指针和引用表达式](#指针和引用表达式)
+        10. [函数返回值](#函数返回值)
+        11. [变量及数组初始化](#变量及数组初始化)
+        12. [预处理指令](#预处理指令)
+        13. [类格式](#类格式)
+        14. [构造函数初始值列表](#构造函数初始值列表)
+        15. [水平留白](#水平留白)
+        16. [垂直留白](#垂直留白)
+    10. [结束语](#结束语)
 
 
 ## 版本 0.1
 
-## 背景
-
-xxx
-
 ## 头文件
 
-通常每一个 .cc 文件都有一个对应的 .h 文件. 也有一些常见例外, 如单元测试代码和只包含 main() 函数的 .cc 文件.
+通常每一个 .cpp 文件都有一个对应的 .h 文件. 也有一些常见例外, 如单元测试代码和只包含 main() 函数的 .cpp 文件.
 
 正确使用头文件可令代码在可读性、文件大小和性能上大为改观.
 
 下面的规则将引导你规避使用头文件时的各种陷阱.
 
-### Self-contained 头文件
-
 ### #define 保护
 
->Tip:所有头文件都应该使用#define来 防 止 头 文 件 被 多 重 包 含,命 名 格 式 当 是:\<PROJECT\>\_\<PATH\>\_\<FILE\>\_H\_ .
+>Tip:所有头文件都应该使用#define来防止头文件被多重包含,命名格式当是:\<PROJECT\>\_\<PATH\>\_\<FILE\>\_H\_ .
 
 为保证唯一性, 头文件的命名应该基于所在项目源代码树的全路径. 例如, 项目 foo 中的头文件 foo/src/bar/baz.h 可按如下方式保护:
 
@@ -150,7 +134,7 @@ xxx
 // b.h:
 struct B {};
 struct D : B {}
-// good_user.cc:
+// good_user.cpp:
 #include "b.h"
 void f(B*);
 void f(void*);
@@ -169,7 +153,7 @@ void test(D* x) { f(x); }
 - 函数:总是使用 #include.
 - 类模板:优先使用 #include.
 
-至于什么时候包含头文件,参见1.5. #include 的路径及顺序 。
+至于什么时候包含头文件,参见#include 的路径及顺序 。
 
 ### 内联函数
 
@@ -177,8 +161,7 @@ void test(D* x) { f(x); }
 
 *定义:*
 
-当函数被声明为内联函数之后, 编译器会将其内联展开, 而不是按通常的函数调用机制进行调
-用.
+当函数被声明为内联函数之后, 编译器会将其内联展开, 而不是按通常的函数调用机制进行调用.
 
 *优点:*
 
@@ -202,7 +185,7 @@ void test(D* x) { f(x); }
 #include "base/logging.h"
 ```
 
-又如, dir/foo.cc 或 dir/foo_test.cc 的主要作用是实现或测试 dir2/foo2.h 的功能, foo.cc 中包含头文件的次序如下:
+又如, dir/foo.cpp 或 dir/foo_test.cpp 的主要作用是实现或测试 dir2/foo2.h 的功能, foo.cpp 中包含头文件的次序如下:
 
 1. dir2/foo2.h (优先位置, 详情如下)
 2. C 系统文件
@@ -210,15 +193,15 @@ void test(D* x) { f(x); }
 4. 其他库的 .h 文件
 5. 本项目内 .h 文件
 
-这种优先的顺序排序保证当 dir2/foo2.h 遗漏某些必要的库时,dir/foo.cc 或 dir/foo_test.cc 的构建会立刻中止。因此这一条规则保证维护这些文件的人们首先看到构建中止的消息而不是维护其他包的人们。
+这种优先的顺序排序保证当 dir2/foo2.h 遗漏某些必要的库时,dir/foo.cpp 或 dir/foo_test.cpp 的构建会立刻中止。因此这一条规则保证维护这些文件的人们首先看到构建中止的消息而不是维护其他包的人们。
 
-dir/foo.cc 和 dir2/foo2.h 通常位于同一目录下 (如 base/basictypes_unittest.cc 和 base/basictypes.h), 但也可以放在不同目录下.
+dir/foo.cpp 和 dir2/foo2.h 通常位于同一目录下 (如 base/basictypes_unittest.cpp 和 base/basictypes.h), 但也可以放在不同目录下.
 
 按字母顺序分别对每种类型的头文件进行二次排序是不错的主意。注意较老的代码可不符合这条规则,要在方便的时候改正它们。
 
-您所依赖的符号 (symbols) 被哪些头文件所定义,您就应该包含(include)哪些头文件, 前置声明 (forwarddeclarations) 情况除外。比如您要用到 bar.h 中的某个符号, 哪怕您所包含的 foo.h 已经包含了 bar.h,也照样得包含 bar.h, 除非 foo.h 有明确说明它会自动向您提供 bar.h 中的 symbol. 不过,凡是 cc 文件所对应的「相关头文件」已经包含的,就不用再重复包含进其 cc 文件里面了,就像 foo.cc 只包含 foo.h就够了,不用再管后者所包含的其它内容。
+您所依赖的符号 (symbols) 被哪些头文件所定义,您就应该包含(include)哪些头文件, 前置声明 (forwarddeclarations) 情况除外。比如您要用到 bar.h 中的某个符号, 哪怕您所包含的 foo.h 已经包含了 bar.h,也照样得包含 bar.h, 除非 foo.h 有明确说明它会自动向您提供 bar.h 中的 symbol. 不过,凡是 cpp 文件所对应的「相关头文件」已经包含的,就不用再重复包含进其 cpp 文件里面了,就像 foo.cpp 只包含 foo.h就够了,不用再管后者所包含的其它内容。
 
-举例来说, google-awesome-project/src/foo/internal/fooserver.cc 的包含次序如下:
+举例来说, google-awesome-project/src/foo/internal/fooserver.cpp 的包含次序如下:
 
 ```cpp
 #include "foo/public/fooserver.h" // 优先位置
@@ -248,7 +231,7 @@ dir/foo.cc 和 dir2/foo2.h 通常位于同一目录下 (如 base/basictypes_unit
 
 ### 命名空间
 
->Tip: 鼓励在 .cc 文件内使用匿名命名空间或 static 声明. 使用具名的命名空间时, 其名称可基于项目名或相对路径. 禁止使用 using 指示(using-directive)。禁止使用内联命名空间(inline namespace)。
+>Tip: 鼓励在 .cpp 文件内使用匿名命名空间或 static 声明. 使用具名的命名空间时, 其名称可基于项目名或相对路径. 禁止使用 using 指示(using-directive)。禁止使用内联命名空间(inline namespace)。
 
 *定义:*
 
@@ -256,16 +239,18 @@ dir/foo.cc 和 dir2/foo2.h 通常位于同一目录下 (如 base/basictypes_unit
 
 *优点:*
 
-虽然类已经提供了(可嵌套的)命名轴线 (YuleFox 注: 将命名分割在不同类的作用域内), 命名空间在这基础上又封装了一层.
+虽然类已经提供了(可嵌套的)命名轴线, 命名空间在这基础上又封装了一层.
 
 举例来说, 两个不同项目的全局作用域都有一个类 Foo, 这样在编译或运行时造成冲突. 如果每个项目将代码置于不同命名空间中, project1::Foo 和 project2::Foo 作为不同符号自然不会冲突.
 
 内联命名空间会自动把内部的标识符放到外层作用域,比如:
 
 ```cpp
-namespace X {
-inline namespace Y {
-void foo();
+namespace X 
+{
+inline namespace Y 
+{
+    void foo();
 } // namespace Y
 } // namespace X
 ```
@@ -286,44 +271,37 @@ X::Y::foo() 与 X::foo() 彼此可代替。内联命名空间主要用来保持�
 
 根据下文将要提到的策略合理使用命名空间.
 
-- 遵守 命名空间命名 中的规则。
+- 遵守命名空间命名中的规则。
 - 像之前的几个例子中一样,在命名空间的最后注释出命名空间的名字。
-- 用命名空间把文件包含, gflags 的声明/定义, 以及类的前置声明以外的整个源文件封装起来, 以区别于其它命名空间:
+- 用命名空间把类的前置声明以外的整个源文件封装起来, 以区别于其它命名空间:
 
 ```cpp
 // .h 文件
-namespace mynamespace {
+namespace mynamespace 
+{
 // 所有声明都置于命名空间中
 // 注意不要使用缩进
-class MyClass {
+class MyClass 
+{
 public:
-...
-void Foo();
+    void Foo();
 };
 } // namespace mynamespace
 ```
 
 ```cpp
-// .cc 文件
-namespace mynamespace {
+// .cpp 文件
+namespace mynamespace 
+{
 // 函数定义都置于命名空间中
-void MyClass::Foo() {
+void MyClass::Foo() 
+{
 ...
 }
 } // namespace mynamespace
 ```
 
-更复杂的 .cc 文件包含更多, 更复杂的细节, 比如 gflags 或 using 声明。
-```cpp
-#include "a.h"
-DEFINE_FLAG(bool, someflag, false, "dummy flag");
-namespace a {
-...code for a...
-// 左对齐
-} // namespace a
-```
-
-- 不要在命名空间 std 内声明任何东西, 包括标准库的类前置声明. 在 std 命名空间声明实体是未定义的行为, 会导致如不可移植. 声明标准库下的实体, 需要包含对应的头文件.
+- 不要在命名空间 std 内声明任何东西, 包括标准库的类前置声明. 在 std 命名空间声明实体是未定义的行为, 会导致问题如不可移植. 声明标准库下的实体, 需要包含对应的头文件.
 - 不应该使用 using 指示引入整个命名空间的标识符号。
 
 ```cpp
@@ -334,21 +312,24 @@ using namespace foo;
 - 不要在头文件中使用 命名空间别名除非显式标记内部命名空间使用。因为任何在头文件中引入的命名空间都会成为公开 API 的一部分。
 
 ```cpp
-// 在 .cc 中使用别名缩短常用的命名空间
+// 在 .cpp 中使用别名缩短常用的命名空间
 namespace baz = ::foo::bar::baz;
 ```
 
 ```cpp
 // 在 .h 中使用别名缩短常用的命名空间
-namespace librarian {
-namespace impl {
+namespace librarian 
+{
+namespace impl 
+{
 // 仅限内部使用
 namespace sidetable = ::pipeline_diagnostics::sidetable;
 }
 // namespace impl
-inline void my_inline_function() {
+inline void my_inline_function() 
+{
 // 限制在一个函数中的命名空间别名
-namespace baz = ::foo::bar::baz;
+    namespace baz = ::foo::bar::baz;
 ...
 }
 }
@@ -359,7 +340,7 @@ namespace baz = ::foo::bar::baz;
 
 ### 匿名命名空间和静态变量
 
-> Tip:在 .cc 文件中定义一个不需要被外部引用的变量时,可以将它们放在匿名命名空间或声明为static 。但是不要在 .h 文件中这么做。
+> Tip:在 .cpp 文件中定义一个不需要被外部引用的变量时,可以将它们放在匿名命名空间或声明为static 。但是不要在 .h 文件中这么做。
 
 *定义:*
 
@@ -367,12 +348,13 @@ namespace baz = ::foo::bar::baz;
 
 *结论:*
 
-推荐、鼓励在 .cc 中对于不需要在其他地方引用的标识符使用内部链接性声明,但是不要在.h 中使用。
+推荐、鼓励在 .cpp 中对于不需要在其他地方引用的标识符使用内部链接性声明,但是不要在.h 中使用。
 
 匿名命名空间的声明和具名的格式相同,在最后注释上 namespace :
 
 ```cpp
-namespace {
+namespace 
+{
 ...
 }
 // namespace
@@ -397,10 +379,12 @@ namespace {
 举例而言,对于头文件 myproject/foo_bar.h , 应当使用
 
 ```cpp
-namespace myproject {
-namespace foo_bar {
-void Function1();
-void Function2();
+namespace myproject 
+{
+namespace foo_bar 
+{
+    void Function1();
+    void Function2();
 } // namespace foo_bar
 } // namespace myproject
 ```
@@ -408,11 +392,13 @@ void Function2();
 而非
 
 ```cpp
-namespace myproject {
-class FooBar {
+namespace myproject 
+{
+class FooBar 
+{
 public:
-static void Function1();
-static void Function2();
+    static void Function1();
+    static void Function2();
 };
 }
 // namespace myproject
@@ -420,7 +406,7 @@ static void Function2();
 
 定义在同一编译单元的函数, 被其他编译单元直接调用可能会引入不必要的耦合和链接时依赖; 静态成员函数对此尤其敏感. 可以考虑提取到新类中, 或者将函数置于独立库的命名空间内.
 
-如果你必须定义非成员函数, 又只是在 .cc 文件中使用它, 可使用匿名命名空间 或static 链接关键字 (如 static int Foo() {...}) 限定其作用域.
+如果你必须定义非成员函数, 又只是在 .cpp 文件中使用它, 可使用匿名命名空间 或static 链接关键字 (如 static int Foo() {...}) 限定其作用域.
 
 ### 局部变量
 
@@ -457,10 +443,11 @@ while (const char* p = strchr(str, '/')) str = p + 1;
 
 ```cpp
 // 低效的实现
-for (int i = 0; i < 1000000; ++i) {
-Foo f;
-// 构造函数和析构函数分别调用 1000000 次!
-f.DoSomething(i);
+for (int i = 0; i < 1000000; ++i) 
+{
+    Foo f;
+    // 构造函数和析构函数分别调用 1000000 次!
+    f.DoSomething(i);
 }
 ```
 
@@ -469,8 +456,9 @@ f.DoSomething(i);
 ```cpp
 // 构造函数和析构函数只调用 1 次
 Foo f;
-for (int i = 0; i < 1000000; ++i) {
-f.DoSomething(i);
+for (int i = 0; i < 1000000; ++i) 
+{
+    f.DoSomething(i);
 }
 ```
 
@@ -523,13 +511,13 @@ f.DoSomething(i);
 
 构造函数不允许调用虚函数. 如果代码允许, 直接终止程序是一个合适的处理错误的方式. 否则, 考虑用Init() 方法或工厂函数.
 
-构造函数不得调用虚函数, 或尝试报告一个非致命错误. 如果对象需要进行有意义的 (non-trivial) 初始化, 考虑使用明确的 Init() 方法或使用工厂模式. Avoid Init() methods on objects with no other statesthat affect which public methods may be called (此类形式的半构造对象有时无法正确工作).
+构造函数不得调用虚函数, 或尝试报告一个非致命错误. 如果对象需要进行有意义的 (non-trivial) 初始化, 考虑使用明确的 Init() 方法或使用工厂模式. Avoid Init() methods on objects with no other states that affect which public methods may be called (此类形式的半构造对象有时无法正确工作).
 
 ### 隐式类型转换
 
 *总述:*
 
-不要定义隐式类型转换. 对于转换运算符和单参数构造函数, 请使用 explicit 关键字.
+<font color=#ff00>建议</font>不要定义隐式类型转换. 对于转换运算符和单参数构造函数, 请使用 explicit 关键字.
 
 *定义:*
 
@@ -540,8 +528,9 @@ f.DoSomething(i);
 explicit 关键字可以用于构造函数或 (在 C++11 引入) 类型转换运算符, 以保证只有当目的类型在调用点被显式写明时才能进行类型转换, 例如使用 cast. 这不仅作用于隐式类型转换, 还能作用于 C++11 的列表初始化语法:
 
 ```cpp
-class Foo {
-explicit Foo(int x, double y);
+class Foo 
+{
+    explicit Foo(int x, double y);
 ...
 };
 void Func(Foo f);
@@ -575,7 +564,7 @@ Func({42, 3.14});
 
 在类型定义中, 类型转换运算符和单参数构造函数都应当用 explicit 进行标记. 一个例外是, 拷贝和移动构造函数不应当被标记为 explicit, 因为它们并不执行类型转换. 对于设计目的就是用于对其他类型进行透明包装的类来说, 隐式类型转换有时是必要且合适的. 这时应当联系项目组长并说明特殊情况.
 
-不能以一个参数进行调用的构造函数不应当加上 explicit. 接受一个 std::initializer_list 作为参数的构造函数也应当省略 explicit, 以便支持拷贝初始化 (例如 MyType m = {1, 2};) .
+不能以一个参数进行调用的构造函数不应当加上 explicit. 接受一个 std::initializer_list 作为参数的构造函数也应当省略 explicit, 以便支持拷贝初始化 (例如 MyType m = {1, 2}; ) .
 
 ### 可拷贝类型和可移动类型
 
@@ -595,7 +584,7 @@ Func({42, 3.14});
 
 可移动及可拷贝类型的对象可以通过传值的方式进行传递或者返回, 这使得 API 更简单, 更安全也更通用. 与传指针和引用不同, 这样的传递不会造成所有权, 生命周期, 可变性等方面的混乱, 也就没必要在协议中予以明确. 这同时也防止了客户端与实现在非作用域内的交互, 使得它们更容易被理解与维护. 这样的对象可以和需要传值操作的通用 API 一起使用, 例如大多数容器.
 
-拷贝 / 移动构造函数与赋值操作一般来说要比它们的各种替代方案, 比如 Clone(), CopyFrom() orSwap(), 更容易定义, 因为它们能通过编译器产生, 无论是隐式的还是通过 = default. 这种方式很简洁, 也保证所有数据成员都会被复制. 拷贝与移动构造函数一般也更高效, 因为它们不需要堆的分配或者是单独的初始化和赋值步骤, 同时, 对于类似 省略不必要的拷贝 这样的优化它们也更加合适.
+拷贝 / 移动构造函数与赋值操作一般来说要比它们的各种替代方案, 比如 Clone(), CopyFrom() orSwap(), 更容易定义, 因为它们能通过编译器产生, 无论是隐式的还是通过 = default. 这种方式很简洁, 也保证所有数据成员都会被复制. 拷贝与移动构造函数一般也更高效, 因为它们不需要堆的分配或者是单独的初始化和赋值步骤, 同时, 对于类似省略不必要的拷贝这样的优化它们也更加合适.
 
 移动操作允许隐式且高效地将源数据转移出右值对象. 这有时能让代码风格更加清晰.
 
@@ -613,12 +602,13 @@ Func({42, 3.14});
 并且在文档中说明类是可拷贝的且/或可移动的.
 
 ```cpp
-class Foo {
+class Foo 
+{
 public:
-Foo(Foo&& other) : field_(other.field) {}
+    Foo(Foo&& other) : field_(other.field) {}
 // 差, 只定义了移动构造函数, 而没有定义对应的赋值运算符.
 private:
-Field field_;
+    Field field_;
 };
 ```
 
@@ -653,7 +643,7 @@ struct 用来定义包含数据的被动式对象, 也可以包含相关的常�
 
 *总述:*
 
-使用组合 (YuleFox 注: 这一点也是 GoF 在 \<\<Design Patterns\>\> 里反复强调的) 常常比使用继承更合理. 如果使用继承的话, 定义为 public 继承.
+使用组合常常比使用继承更合理. 如果使用继承的话, 定义为 public 继承.
 
 *定义:*
 
@@ -671,7 +661,7 @@ struct 用来定义包含数据的被动式对象, 也可以包含相关的常�
 
 所有继承必须是 public 的. 如果你想使用私有继承, 你应该替换成把基类的实例作为成员对象的方式.
 
-不要过度使用实现继承. 组合常常更合适一些. 尽量做到只在“是一个” ( “ is-a” , YuleFox 注: 其他“has-a”情况下请使用组合) 的情况下使用继承: 如果 Bar 的确“是一种”Foo, Bar 才能继承 Foo.
+不要过度使用实现继承. 组合常常更合适一些. 尽量做到只在“是一个”的情况下使用继承: 如果 Bar 的确“是一种”Foo, Bar 才能继承 Foo.
 
 必要的话, 析构函数声明为 virtual. 如果你的类有虚函数, 则析构函数也应该为虚函数.
 
@@ -760,7 +750,7 @@ C++ 允许用户通过使用 operator 关键字 对内建运算符进行重载�
 
 只有在意义明显, 不会出现奇怪的行为并且与对应的内建运算符的行为一致时才定义重载运算符. 例如,| 要作为位或或逻辑或来使用, 而不是作为 shell 中的管道.
 
-只有对用户自己定义的类型重载运算符. 更准确地说, 将它们和它们所操作的类型定义在同一个头文件中, .cc 中和命名空间中. 这样做无论类型在哪里都能够使用定义的运算符, 并且最大程度上避免了多重定义的风险. 如果可能的话, 请避免将运算符定义为模板, 因为此时它们必须对任何模板参数都能够作用. 如果你定义了一个运算符, 请将其相关且有意义的运算符都进行定义, 并且保证这些定义的语义是一致的. 例如, 如果你重载了 <, 那么请将所有的比较运算符都进行重载, 并且保证对于同一组参数, < 和 >不会同时返回 true.
+只有对用户自己定义的类型重载运算符. 更准确地说, 将它们和它们所操作的类型定义在同一个头文件中, .cpp 中和命名空间中. 这样做无论类型在哪里都能够使用定义的运算符, 并且最大程度上避免了多重定义的风险. 如果可能的话, 请避免将运算符定义为模板, 因为此时它们必须对任何模板参数都能够作用. 如果你定义了一个运算符, 请将其相关且有意义的运算符都进行定义, 并且保证这些定义的语义是一致的. 例如, 如果你重载了 <, 那么请将所有的比较运算符都进行重载, 并且保证对于同一组参数, < 和 >不会同时返回 true.
 
 建议不要将不进行修改的二元运算符定义为成员函数. 如果一个二元运算符被定义为类成员, 这时隐式转换会作用域右侧的参数却不会作用于左侧. 这时会出现 a < b 能够通过编译而 b < a 不能的情况, 这是很让人迷惑的.
 
@@ -774,7 +764,7 @@ C++ 允许用户通过使用 operator 关键字 对内建运算符进行重载�
 
 *总述:*
 
-将 所有数据成员声明为 private, 除非是 static const 类型成员 (遵循常量命名规则). 处于技术上的原因, 在使用 Google Test 时我们允许测试固件类中的数据成员为 protected.
+将 所有数据成员声明为 private, 除非是 static const 类型成员 (遵循常量命名规则).
 
 ### 声明顺序
 
@@ -822,7 +812,7 @@ C/C++ 中的函数参数或者是函数的输入, 或者是函数的输出, 或�
 
 *总述:*
 
-所有按引用传递的参数必须加上 const.
+<font color=#ff00>建议</font>所有按引用传递的参数必须加上 const.
 
 *定义:*
 
@@ -844,7 +834,7 @@ C/C++ 中的函数参数或者是函数的输入, 或者是函数的输出, 或�
 void Foo(const string &in, string *out);
 ```
 
-事实上这在 Google Code 是一个硬性约定: 输入参数是值参或 const 引用, 输出参数为指针. 输入参数可以是 const 指针, 但决不能是非 const 的引用参数, 除非特殊要求, 比如 swap().
+ 输入参数是值参或 const 引用, 输出参数为指针. 输入参数可以是 const 指针, 但决不能是非 const 的引用参数, 除非特殊要求, 比如 swap().
 
 有时候, 在输入形参中用 const T* 指针比 const T& 更明智. 比如:
 
@@ -864,10 +854,11 @@ void Foo(const string &in, string *out);
 你可以编写一个参数类型为 const string& 的函数, 然后用另一个参数类型为 const char* 的函数对其进行重载:
 
 ```cpp
-class MyClass {
+class MyClass 
+{
 public:
-void Analyze(const string &text);
-void Analyze(const char *text, size_t textlen);
+    void Analyze(const string &text);
+    void Analyze(const char *text, size_t textlen);
 };
 ```
 
@@ -877,7 +868,7 @@ void Analyze(const char *text, size_t textlen);
 
 *缺点:*
 
-如果函数单靠不同的参数类型而重载 (acgtyrant 注:这意味着参数数量不变), 读者就得十分熟悉 C++五花八门的匹配规则, 以了解匹配过程具体到底如何. 另外, 如果派生类只重载了某个函数的部分变体,继承语义就容易令人困惑.
+如果函数单靠不同的参数类型而重载, 读者就得十分熟悉 C++五花八门的匹配规则, 以了解匹配过程具体到底如何. 另外, 如果派生类只重载了某个函数的部分变体,继承语义就容易令人困惑.
 
 *结论:*
 
@@ -995,92 +986,6 @@ template <class T, class U> decltype(declval<T&>() + declval<U&>()) add(T t, U u
 
 友元扩大了 (但没有打破) 类的封装边界. 某些情况下, 相对于将类成员声明为 public, 使用友元是更好 的选择, 尤其是如果你只允许另一个类访问该类的私有成员时. 当然, 大多数类都只应该通过其提供的公 有成员进行互操作.
 
-### 异常
-
-> Tip: 我们不使用 C++ 异常.
-
-*优点:*
-
-- 异常允许应用高层决定如何处理在底层嵌套函数中「不可能发生」的失败(failures),不用管那些 含糊且容易出错的错误代码(acgtyrant 注:error code, 我猜是C语言函数返回的非零 int 值)。
-- 很多现代语言都用异常。引入异常使得 C++ 与 Python, Java 以及其它类 C++ 的语言更一脉相 承。
-- 有些第三方 C++ 库依赖异常,禁用异常就不好用了。
-- 异常是处理构造函数失败的唯一途径。虽然可以用工厂函数(acgtyrant 注:factory function, 出自 C++ 的一种设计模式,即「简单工厂模式」)或 Init() 方法代替异常, 但是前者要求在堆栈分配 内存,后者会导致刚创建的实例处于”无效“状态。
-- 在测试框架里很好用。
-
-*缺点:*
-
-- 在现有函数中添加 throw 语句时,您必须检查所有调用点。要么让所有调用点统统具备最低限度 的异常安全保证,要么眼睁睁地看异常一路欢快地往上跑,最终中断掉整个程序。举例,f() 调用 g(), g() 又调用 h(), 且 h 抛出的异常被 f 捕获。当心 g, 否则会没妥善清理好。
-- 还有更常见的,异常会彻底扰乱程序的执行流程并难以判断,函数也许会在您意料不到的地方返回。 您或许会加一大堆何时何处处理异常的规定来降低风险,然而开发者的记忆负担更重了。
-- 异常安全需要 RAII 和不同的编码实践. 要轻松编写出正确的异常安全代码需要大量的支持机制. 更进一步地说, 为了避免读者理解整个调用表, 异常安全必须隔绝从持续状态写到“提交”状态的逻 辑. 这一点有利有弊 (因为你也许不得不为了隔离提交而混淆代码). 如果允许使用异常, 我们就不 得不时刻关注这样的弊端, 即使有时它们并不值得.
-- 启用异常会增加二进制文件数据,延长编译时间(或许影响小),还可能加大地址空间的压力。
-- 滥用异常会变相鼓励开发者去捕捉不合时宜,或本来就已经没法恢复的「伪异常」。比如,用户的 输入不符合格式要求时,也用不着抛异常。如此之类的伪异常列都列不完。
-
-*结论:*
-
-从表面上看来,使用异常利大于弊, 尤其是在新项目中. 但是对于现有代码, 引入异常会牵连 到所有相关代码. 如果新项目允许异常向外扩散, 在跟以前未使用异常的代码整合时也将是个 麻烦. 因为 Google 现有的大多数 C++ 代码都没有异常处理, 引入带有异常处理的新代码相 当困难. 
-
-鉴于 Google 现有代码不接受异常, 在现有代码中使用异常比在新项目中使用的代价多少要大 一些. 迁移过程比较慢, 也容易出错. 我们不相信异常的使用有效替代方案, 如错误代码, 断言 等会造成严重负担.
-
-我们并不是基于哲学或道德层面反对使用异常, 而是在实践的基础上. 我们希望在 Google 使 用我们自己的开源项目, 但项目中使用异常会为此带来不便, 因此我们也建议不要在 Google 的开源项目中使用异常. 如果我们需要把这些项目推倒重来显然不太现实.
-
-### 运行时类型识别
-
-> Tip: 我们禁止使用 RTTI.
-
-*定义:*
-
-RTTI 允许程序员在运行时识别 C++ 类对象的类型. 它通过使用 typeid 或者 dynamic_cast 完成.
-
-*优点:
-
-RTTI 的标准替代 (下面将描述) 需要对有问题的类层级进行修改或重构. 有时这样的修改并 不是我们所想要的, 甚至是不可取的, 尤其是在一个已经广泛使用的或者成熟的代码中.
-
-RTTI 在某些单元测试中非常有用. 比如进行工厂类测试时, 用来验证一个新建对象是否为期 望的动态类型. RTTI 对于管理对象和派生对象的关系也很有用.
-
-在考虑多个抽象对象时 RTTI 也很好用. 例如:
-
-```cpp
-bool Base::Equal(Base* other) = 0;
-bool Derived::Equal(Base* other) {
-Derived* that = dynamic_cast<Derived*>(other);
-if (that == NULL)
-return false;
-...
-}
-```
-
-*缺点:*
-
-在运行时判断类型通常意味着设计问题. 如果你需要在运行期间确定一个对象的类型, 这通常 说明你需要考虑重新设计你的类.
-随意地使用 RTTI 会使你的代码难以维护. 它使得基于类型的判断树或者 switch 语句散布在 代码各处. 如果以后要进行修改, 你就必须检查它们.
-
-*结论:*
-RTTI 有合理的用途但是容易被滥用, 因此在使用时请务必注意.
-
-在单元测试中可以使用 RTTI, 但是在其他代码中请尽量避免. 尤其是在新代码中, 使用 RTTI 前务必三思. 如果 你的代码需要根据不同的对象类型执行不同的行为的话, 请考虑用以下的两种替代方案之一 
-
-查询类型:
-
-虚函数可以根据子类类型的不同而执行不同代码. 这是把工作交给了对象本身去处理.
-
-如果这一工作需要在对象之外完成, 可以考虑使用双重分发的方案, 例如使用访问者设计模 式. 这就能够在对象之外进行类型判断.
-
-如果程序能够保证给定的基类实例实际上都是某个派生类的实例, 那么就可以自由使用 dy- namic_cast. 在这种情况下, 使用 dynamic_cast 也是一种替代方案.
-
-基于类型的判断树是一个很强的暗示, 它说明你的代码已经偏离正轨了. 不要像下面这样:
-
-```cpp
-if (typeid(*data) == typeid(D1)) {
-...
-} else if (typeid(*data) == typeid(D2)) {
-...
-} else if (typeid(*data) == typeid(D3)) {
-...
-```
-
-一旦在类层级中加入新的子类, 像这样的代码往往会崩溃. 而且, 一旦某个子类的属性改变了, 你很难找到并修改所有受影响的代码块.
-不要去手工实现一个类似 RTTI 的方案. 反对 RTTI 的理由同样适用于这些方案, 比如带类 型标签的类继承体系. 而且, 这些方案会掩盖你的真实意图.
-
 ### 类型转换
 
 > Tip: 使用 C++ 的类型转换, 如 static_cast<>(). 不要使用 int y = (int)x 或 int y = int(x) 等 转换方式;
@@ -1103,55 +1008,7 @@ C 语言的类型转换问题在于模棱两可的操作; 有时是在做强制�
 
 - 用 static_cast 替代 C 风格的值转换, 或某个类指针需要明确的向上转换为父类指针 时.
 - 用 const_cast 去掉 const 限定符.
-- 用 reinterpret_cast 指针类型和整型或其它指针之间进行不安全的相互转换. 仅在你 对所做一切了然于心时使用. 至于 dynamic_cast 参见5.8. 运行时类型识别. 
-
-### 流
-
-> Tip: 只在记录日志时使用流.
-
-*定义:*
-
-流用来替代 printf() 和 scanf().
-
-*优点:*
-
-有了流, 在打印时不需要关心对象的类型. 不用担心格式化字符串与参数列表不匹配 (虽然在 gcc 中使用 printf 也不存在这个问题). 流的构造和析构函数会自动打开和关闭对应的文件.
-
-*缺点:*
-
-流使得 pread() 等功能函数很难执行. 如果不使用 printf 风格的格式化字符串, 某些格式化 操作 (尤其是常用的格式字符串 %.*s) 用流处理性能是很低的. 流不支持字符串操作符重新 排序 (%1s), 而这一点对于软件国际化很有用.
-
-*结论:*
-
-不要使用流, 除非是日志接口需要. 使用 printf 之类的代替. 使用流还有很多利弊, 但代码一致性胜过一切. 不要在代码中使用流.
-
-*拓展讨论:*
-
-对这一条规则存在一些争论, 这儿给出点深层次原因. 回想一下唯一性原则 (Only One Way): 我们希望在任何时候都只使用一种确定的 I/O 类型, 使代码在所有 I/O 处都保持一致. 因此, 我们不希望用户来决定是使用流还是 printf + read/write. 相反, 我们应该决定到底用哪 一种方式. 把日志作为特例是因为日志是一个非常独特的应用, 还有一些是历史原因. 
-
-流的支持者们主张流是不二之选, 但观点并不是那么清晰有力. 他们指出的流的每个优势也都 是其劣势. 流最大的优势是在输出时不需要关心打印对象的类型. 这是一个亮点. 同时, 也是 一个不足: 你很容易用错类型, 而编译器不会报警. 使用流时容易造成的这类错误:
-
-```cpp
-cout << this; // 输出地址
-cout << *this; // 输出值
-```
-
-由于 << 被重载, 编译器不会报错. 就因为这一点我们反对使用操作符重载.
-
-有人说 printf 的格式化丑陋不堪, 易读性差, 但流也好不到哪儿去. 看看下面两段代码吧, 实
-现相同的功能, 哪个更清晰?
-
-```cpp
-cerr << "Error connecting to '" << foo->bar()->hostname.first
-<< ":" << foo->bar()->hostname.second << ": " << strerror(errno);
-fprintf(stderr, "Error connecting to '%s:%u: %s",
-foo->bar()->hostname.first, foo->bar()->hostname.second,
-strerror(errno));
-```
-
-你可能会说, “把流封装一下就会比较好了”, 这儿可以, 其他地方呢? 而且不要忘了, 我们的 目标是使语言更紧凑, 而不是添加一些别人需要学习的新装备.
-
-每一种方式都是各有利弊, “没有最好, 只有更适合”. 简单性原则告诫我们必须从中选择其 一, 最后大多数决定采用 printf + read/write.
+- 用 reinterpret_cast 指针类型和整型或其它指针之间进行不安全的相互转换. 仅在你 对所做一切了然于心时使用. 
 
 ### 前置自增和自减
 
@@ -1179,7 +1036,7 @@ strerror(errno));
 
 *定义:*
 
-在声明的变量或参数前加上关键字 const 用于指明变量值不可被篡改 (如 const int foo). 为类中的函数加上 const 限定符表明该函数不会修改类成员变量的状态 (如 class Foo { int Bar(char c) const; };).
+在声明的变量或参数前加上关键字 const 用于指明变量值不可被篡改 (如 const int foo). 为类中的函数加上 const 限定符表明该函数不会修改类成员变量的状态 (如 class Foo { int Bar(char c) const; }; ).
 
 *优点:*
 
@@ -1224,89 +1081,6 @@ const 变量, 数据成员, 函数和参数为编译时类型检测增加了一�
 
 靠 constexpr 特性,方才实现了 C++ 在接口上打造真正常量机制的可能。好好用 constexpr 来定义真·常量以及支持常量的函数。避免复杂的函数定义,以使其能够与 constexpr 一起使 用。千万别痴心妄想地想靠 constexpr 来强制代码「内联」。
 
-### 整型
-
-> Tip: C++ 内建整型中, 仅使用 int. 如果程序中需要不同大小的变量, 可以使用 <stdint.h> 中长度精 确的整型, 如 int16_t. 如果您的变量可能不小于 2^31 (2GiB), 就用 64 位变量比如 int64_t. 此外要留 意,哪怕您的值并不会超出 int 所能够表示的范围,在计算过程中也可能会溢出。所以拿不准时,干脆用 更大的类型。
-
-*定义:*
-
-C++ 没有指定整型的大小. 通常人们假定 short 是 16 位, int 是 32 位, long 是 32 位, long long 是 64 位.
-
-*优点:*
-
-保持声明统一.
-
-*缺点:*
-
-C++ 中整型大小因编译器和体系结构的不同而不同.
-
-*结论:*
-
-<stdint.h> 定义了 int16_t, uint32_t, int64_t 等整型, 在需要确保整型大小时可以使用 它们代替 short, unsigned long long 等. 在 C 整型中, 只使用 int. 在合适的情况下, 推荐 使用标准类型如 size_t 和 ptrdiff_t.
-
-如果已知整数不会太大, 我们常常会使用 int, 如循环计数. 在类似的情况下使用原生类型 int. 你可以认为 int 至少为 32 位, 但不要认为它会多于 32 位. 如果需要 64 位整型, 用 int64_t 或 uint64_t.
-
-对于大整数, 使用 int64_t.
-
-不要使用 uint32_t 等无符号整型, 除非你是在表示一个位组而不是一个数值, 或是你需要定 义二进制补码溢出. 尤其是不要为了指出数值永不会为负, 而使用无符号类型. 相反, 你应该 使用断言来保护数据.
-
-如果您的代码涉及容器返回的大小(size),确保其类型足以应付容器各种可能的用法。拿不准时,类型越大越好。
-
-小心整型类型转换和整型提升,总有意想不到的后果。
-
-*关于无符号整数:*
-
-有些人, 包括一些教科书作者, 推荐使用无符号类型表示非负数. 这种做法试图达到自我文档 化. 但是, 在 C 语言中, 这一优点被由其导致的 bug 所淹没. 看看下面的例子: for (unsigned int i = foo.Length()-1; i >= 0; --i) ...
-
-上述循环永远不会退出! 有时 gcc 会发现该 bug 并报警, 但大部分情况下都不会. 类似的 bug 还会出现在比较有符合变量和无符号变量时. 主要是 C 的类型提升机制会致使无符号类型的 行为出乎你的意料.
-
-因此, 使用断言来指出变量为非负数, 而不是使用无符号型!
-
-### 64 位下的可移植性
-
->Tip: 代码应该对 64 位和 32 位系统友好. 处理打印, 比较, 结构体对齐时应切记:
-
-- 对于某些类型, printf() 的指示符在 32 位和 64 位系统上可移植性不是很好. C99 标准定义了一 些可移植的格式化指示符. 不幸的是, MSVC 7.1 并非全部支持, 而且标准中也有所遗漏, 所以有时 我们不得不自己定义一个丑陋的版本 (头文件 inttypes.h 仿标准风格):
-
-```cpp
-// printf macros for size_t, in the style of inttypes.h
-#ifdef _LP64
-#define __PRIS_PREFIX "z"
-#else
-#define __PRIS_PREFIX
-#endif
-// Use these macros after a % in a printf format string
-// to get correct 32/64 bit behavior, like this:
-// size_t size = records.size();
-// printf("%"PRIuS"\n", size);
-#define PRIdS __PRIS_PREFIX "d"
-#define PRIxS __PRIS_PREFIX "x"
-#define PRIuS __PRIS_PREFIX "u"
-#define PRIXS __PRIS_PREFIX "X"
-#define PRIoS __PRIS_PREFIX "o"
-```
-
-类型 | 不要使用 | 使用 | 备注
--|---|---|--
-void * (或其他指针类 | %lx | %p
-int64_t | %qd, %lld |  %"PRId64"
-uint64_t | %qu, %llu, %llx  | %"PRIu64", %"PRIx64"
-size_t | %u | %"PRIuS", %"PRIxS" | C99 规定 %zu
-ptrdiff_t | %d | %"PRIdS" | C99 规定 %zd
-
-注意 PRI* 宏会被编译器扩展为独立字符串. 因此如果使用非常量的格式化字符串, 需 要将宏的值而不是宏名插入格式中. 使用 PRI* 宏同样可以在 % 后包含长度指示符. 例 如, printf("x = %30"PRIuS"\n", x) 在 32 位 Linux 上将被展开为 printf("x = %30" "u" "\n", x), 编译器当成 printf("x = %30u\n", x) 处理.
-
-- 记住 sizeof(void *) != sizeof(int). 如果需要一个指针大小的整数要用 intptr_t.
-- 你要非常小心的对待结构体对齐, 尤其是要持久化到磁盘上的结构体 (Yang.Y 注: 持久化 - 将数 据按字节流顺序保存在磁盘文件或数据库中). 在 64 位系统中, 任何含有 int64_t/uint64_t 成 员的类/结构体, 缺省都以 8 字节在结尾对齐. 如果 32 位和 64 位代码要共用持久化的结构体, 需 要确保两种体系结构下的结构体对齐一致. 大多数编译器都允许调整结构体对齐. gcc 中可使用 __attribute__((packed)). MSVC 则提供了 #pragma pack() 和 __declspec(align()).
-- 创建 64 位常量时使用 LL 或 ULL 作为后缀, 如:
-
-```cpp
-int64_t my_value = 0x123456789LL;
-uint64_t my_mask = 3ULL << 48;
-```
-
-- 如果你确实需要 32 位和 64 位系统具有不同代码, 可以使用 #ifdef _LP64 指令来切分 32/64 位代 码. (尽量不要这么做, 如果非用不可, 尽量使修改局部化)
-
 ### 预处理宏
 
 > Tip: 使用宏时要非常谨慎, 尽量以内联函数, 枚举和常量代替之.
@@ -1347,9 +1121,10 @@ Struct data; memset(&data, 0, sizeof(data));
     ```
 
 ```cpp
-if (raw_size < sizeof(int)) {
-LOG(ERROR) << "compressed record not big enough for count: " << raw_size;
-return false;
+if (raw_size < sizeof(int)) 
+{
+    LOG(ERROR) << "compressed record not big enough for count: " << raw_size;
+    return false;
 }
 ```
 
@@ -1452,17 +1227,20 @@ TestFunction2({1, 2, 3});
 用户自定义类型也可以定义接收 std::initializer_list<T> 的构造函数和赋值运算符,以自动列表初 始化:
 
 ```cpp
-class MyType {
+class MyType 
+{
 public:
-// std::initializer_list 专门接收 init 列表。
-// 得以值传递。
-MyType(std::initializer_list<int> init_list) {
-for (int i : init_list) append(i);
-}
-MyType& operator=(std::initializer_list<int> init_list) {
-clear();
-for (int i : init_list) append(i);
-}
+    // std::initializer_list 专门接收 init 列表。
+    // 得以值传递。
+    MyType(std::initializer_list<int> init_list) 
+    {
+        for (int i : init_list) append(i);
+    }
+    MyType& operator=(std::initializer_list<int> init_list) 
+    {
+        clear();
+        for (int i : init_list) append(i);
+    }
 };
 MyType m{2, 3, 5, 7};
 ```
@@ -1473,10 +1251,11 @@ MyType m{2, 3, 5, 7};
 double d{1.23};
 // MyOtherType 没有 std::initializer_list 构造函数,
 // 直接上接收常规类型的构造函数。
-class MyOtherType {
+class MyOtherType 
+{
 public:
-explicit MyOtherType(string);
-MyOtherType(int, string);
+    explicit MyOtherType(string);
+    MyOtherType(int, string);
 };
 MyOtherType m = {1, "b"};
 // 不过如果构造函数是显式的(explict),您就不能用 `= {}` 了。
@@ -1503,7 +1282,7 @@ Lambda 表达式是创建匿名函数对象的一种简易途径,常用于把函
 
 ```cpp
 std::sort(v.begin(), v.end(), [](int x, int y) {
-return Weight(x) < Weight(y);
+    return Weight(x) < Weight(y);
 });
 ```
 
@@ -1550,45 +1329,6 @@ C++11 首次提出 Lambdas, 还提供了一系列处理函数对象的工具,比
 - 模板编程有时候能够实现更简洁更易用的接口, 但是更多的时候却适得其反. 因此模板编程最好只 用在少量的基础组件, 基础数据结构上, 因为模板带来的额外的维护成本会被大量的使用给分担掉
 - 在使用模板编程或者其他复杂的模板技巧的时候, 你一定要再三考虑一下. 考虑一下你们团队成员 的平均水平是否能够读懂并且能够维护你写的模板代码. 或者一个非 c++ 程序员和一些只是在出 错的时候偶尔看一下代码的人能够读懂这些错误信息或者能够跟踪函数的调用流程. 如果你使用递 归的模板实例化, 或者类型列表, 或者元函数, 又或者表达式模板, 或者依赖 SFINAE, 或者 sizeof 的 trick 手段来检查函数是否重载, 那么这说明你模板用的太多了, 这些模板太复杂了, 我们不推荐 使用
 - 如果你使用模板编程, 你必须考虑尽可能的把复杂度最小化, 并且尽量不要让模板对外暴漏. 你最 好只在实现里面使用模板, 然后给用户暴露的接口里面并不使用模板, 这样能提高你的接口的可读 性. 并且你应该在这些使用模板的代码上写尽可能详细的注释. 你的注释里面应该详细的包含这些 代码是怎么用的, 这些模板生成出来的代码大概是什么样子的. 还需要额外注意在用户错误使用你 的模板代码的时候需要输出更人性化的出错信息. 因为这些出错信息也是你的接口的一部分, 所以 你的代码必须调整到这些错误信息在用户看起来应该是非常容易理解, 并且用户很容易知道如何修 改这些错误
-
-### Boost 库
-
-> Tip: 只使用 Boost 中被认可的库.
-
-*定义:*
-
-Boost 库集 是一个广受欢迎, 经过同行鉴定, 免费开源的 C++ 库集.
-
-*优点:*
-
-Boost 代码质量普遍较高, 可移植性好, 填补了 C++ 标准库很多空白, 如型别的特性, 更完善 的绑定器, 更好的智能指针。
-
-*缺点:*
-
-某些 Boost 库提倡的编程实践可读性差, 比如元编程和其他高级模板技术, 以及过度“函数 化”的编程风格.
-
-*结论:*
-
-为了向阅读和维护代码的人员提供更好的可读性, 我们只允许使用 Boost 一部分经认可的特 性子集. 目前允许使用以下库:
-
-- Call Traits : boost/call_traits.hpp
-- Compressed Pair : boost/compressed_pair.hpp
-- <The Boost Graph Library (BGL) : boost/graph, except serialization (adj_list_serialize.hpp) and parallel/distributed algorithms and data struc- tures(boost/graph/parallel/* and boost/graph/distributed/*)
-- Property Map : boost/property_map.hpp
-- The part of Iterator that deals with defining iterators: iterator_adaptor.hpp, boost/iterator/ boost/iterator/iterator_facade.hpp, and boost/ function_output_iterator.hpp
-- The part of Polygon that deals with Voronoi diagram construction and doesn’t de- pend on the rest of Polygon: boost/polygon/voronoi_builder.hpp, boost/polygon/ voronoi_diagram.hpp, and boost/polygon/voronoi_geometry_type.hpp
-- Bimap : boost/bimap
-- Statistical Distributions and Functions : boost/math/distributions
-- Multi-index : boost/multi_index
-- Heap : boost/heap
-- The flat containers from Container: boost/container/flat_map, and boost/ container/flat_set
-
-我们正在积极考虑增加其它 Boost 特性, 所以列表中的规则将不断变化.
-
-以下库可以用,但由于如今已经被 C++ 11 标准库取代,不再鼓励:
-
-- Pointer Container : boost/ptr_container, 改用 std::unique_ptr
-- Array : boost/array.hpp, 改用 std::array
 
 ### C++11
 
@@ -1658,14 +1398,13 @@ int cstmr_id; // 删减了若干字母.
 
 可接受的文件命名示例:
 
-- my_useful_class.cc
-- my-useful-class.cc
-- myusefulclass.cc
-- myusefulclass_test.cc // _unittest 和 _regtest 已弃用.
+- my_useful_class.cpp
+- myusefulclass.cpp
+- myusefulclass_test.cpp 
 
-C++ 文件要以 .cc 结尾, 头文件以 .h 结尾. 专门插入文本的文件则以 .inc 结尾, 参见头文件自足. 不要使用已经存在于 /usr/include 下的文件名 (Yang.Y 注: 即编译器搜索系统头文件的路径), 如 db.h.
+C++ 文件要以 .cpp 结尾, 头文件以 .h 结尾. 专门插入文本的文件则以 .inc 结尾, 参见头文件自足. 不要使用已经存在于 /usr/include 下的文件名 (Yang.Y 注: 即编译器搜索系统头文件的路径), 如 db.h.
 
-通常应尽量让文件名更加明确. http_server_logs.h 就比 logs.h 要好. 定义类时文件名一般成对出现, 如 foo_bar.h 和 foo_bar.cc, 对应于类 FooBar. 内联函数必须放在 .h 文件中. 如果内联函数比较短, 就直接放在 .h 中.
+通常应尽量让文件名更加明确. http_server_logs.h 就比 logs.h 要好. 定义类时文件名一般成对出现, 如 foo_bar.h 和 foo_bar.cpp, 对应于类 FooBar. 内联函数必须放在 .h 文件中. 如果内联函数比较短, 就直接放在 .h 中.
 
 ### 类型命名
 
@@ -1679,15 +1418,24 @@ C++ 文件要以 .cc 结尾, 头文件以 .h 结尾. 专门插入文本的文件
 
 ```cpp
 // 类和结构体
-class UrlTable { ...
-class UrlTableTester { ...
-struct UrlTableProperties { ...
+class UrlTable 
+{ ...
+
+class UrlTableTester
+{ ...
+
+struct UrlTableProperties 
+{ ...
+
 // 类型定义
 typedef hash_map<UrlTableProperties *, string> PropertiesMap;
+
 // using 别名
 using PropertiesMap = hash_map<UrlTableProperties *, string>;
+
 // 枚举
-enum UrlTableErrors { ...
+enum UrlTableErrors 
+{ ...
 ```
 
 ### 变量命名
@@ -1713,13 +1461,13 @@ string tableName; // 差 - 混合大小写
 不管是静态的还是非静态的, 类数据成员都可以和普通变量一样, 但要接下划线.
 
 ```cpp
-class TableInfo {
+class TableInfo
+{
 ...
 private:
-string table_name_; // 好 - 后加下划线.
-string tablename_; // 好.
-static Pool<TableInfo>* pool_;
-// 好.
+    string table_name_; // 好 - 后加下划线.
+    string tablename_; // 好.
+    static Pool<TableInfo>* pool_;// 好.
 };
 ```
 
@@ -1728,10 +1476,11 @@ static Pool<TableInfo>* pool_;
 不管是静态的还是非静态的, 结构体数据成员都可以和普通变量一样, 不用像类那样接下划线:
 
 ```cpp
-struct UrlTableProperties {
-string name;
-int num_entries;
-static Pool<UrlTableProperties>* pool;
+struct UrlTableProperties 
+{
+    string name;
+    int num_entries;
+    static Pool<UrlTableProperties>* pool;
 };
 ```
 
@@ -1794,15 +1543,17 @@ MyExcitingMethod(), my_exciting_member_variable(), set_my_exciting_member_variab
 单独的枚举值应该优先采用常量 的命名方式. 但宏 方式的命名也可以接受. 枚举名 UrlTableErrors (以 及 AlternateUrlTableErrors) 是类型, 所以要用大小写混合的方式.
 
 ```cpp
-enum UrlTableErrors {
-kOK = 0,
-kErrorOutOfMemory,
-kErrorMalformedInput,
+enum UrlTableErrors 
+{
+    kOK = 0,
+    kErrorOutOfMemory,
+    kErrorMalformedInput,
 };
-enum AlternateUrlTableErrors {
-OK = 0,
-OUT_OF_MEMORY = 1,
-MALFORMED_INPUT = 2,
+enum AlternateUrlTableErrors 
+{
+    OK = 0,
+    OUT_OF_MEMORY = 1,
+    MALFORMED_INPUT = 2,
 };
 ```
 
@@ -1854,13 +1605,11 @@ LONGLONG_MAX: 常量, 如同 INT_MAX
 
 *总述:*
 
-在每一个文件开头加入版权公告.
-
 文件注释描述了该文件的内容. 如果一个文件只声明, 或实现, 或测试了一个对象, 并且这个对象已经在 它的声明处进行了详细的注释, 那么就没必要再加上文件注释. 除此之外的其他文件都需要文件注释.
 
 *说明:*
 
-    法律公告和作者信息
+    作者信息
 
 每个文件都应该包含许可证引用. 为项目选择合适的许可证版本.(比如, Apache 2.0, BSD, LGPL, GPL) 如果你对原始作者的文件做了重大修改, 请考虑删除原作者信息.
 
@@ -1868,7 +1617,7 @@ LONGLONG_MAX: 常量, 如同 INT_MAX
 
 如果一个 .h 文件声明了多个概念, 则文件注释应当对文件的内容做一个大致的说明, 同时说明各概念之 间的联系. 一个一到两行的文件注释就足够了, 对于每个概念的详细文档应当放在各个概念中, 而不是文 件注释中.
 
-不要在 .h 和 .cc 之间复制注释, 这样的注释偏离了注释的实际意义.
+不要在 .h 和 .cpp 之间复制注释, 这样的注释偏离了注释的实际意义.
 
 ### 类注释
 
@@ -1885,7 +1634,8 @@ LONGLONG_MAX: 常量, 如同 INT_MAX
 process(iter->key(), iter->value());
 // }
 // delete iter;
-class GargantuanTableIterator {
+class GargantuanTableIterator 
+{
 ...
 };
 ```
@@ -1896,7 +1646,7 @@ class GargantuanTableIterator {
 
 如果你想用一小段代码演示这个类的基本用法或通常用法, 放在类注释里也非常合适.
 
-如果类的声明和定义分开了 (例如分别放在了 .h 和 .cc 文件中), 此时, 描述类用法的注释应当和接口定 义放在一起, 描述类的操作和实现的注释应当和实现放在一起.
+如果类的声明和定义分开了 (例如分别放在了 .h 和 .cpp 文件中), 此时, 描述类用法的注释应当和接口定 义放在一起, 描述类的操作和实现的注释应当和实现放在一起.
 
 ### 函数注释
 
@@ -2001,10 +1751,11 @@ const int kNumTestCases = 6;
 ```cpp
 // Divide result by two, taking into account that x
 // contains the carry from the add.
-for (int i = 0; i < result->size(); i++) {
-x = (x << 8) + (*result)[i];
-(*result)[i] = x >> 1;
-x &= 1;
+for (int i = 0; i < result->size(); i++) 
+{
+    x = (x << 8) + (*result)[i];
+    (*result)[i] = x >> 1;
+    x &= 1;
 }
 ```
 
@@ -2016,7 +1767,7 @@ x &= 1;
 // If we have enough memory, mmap the data portion too.
 mmap_budget = max<int64>(0, mmap_budget - index_->length());
 if (mmap_budget >= data_size_ && !MmapData(mmap_chunk_bytes, mlock))
-return; // Error already logged.
+    return; // Error already logged.
 ```
 
 注意, 这里用了两段注释分别描述这段代码的作用, 和提示函数返回时错误已经被记入日志.
@@ -2026,16 +1777,18 @@ return; // Error already logged.
 ```cpp
 DoSomething(); // Comment here so the comments line up.
 DoSomethingElseThatIsLonger(); // Two spaces between the code and the comment.
-{ // One space before comment when opening a new scope is allowed,
-// thus the comment lines up with the following comments and code.
-DoSomethingElse();
-// Two spaces before line comments normally.
+{   // One space before comment when opening a new scope is allowed,
+    // thus the comment lines up with the following comments and code.
+    DoSomethingElse();
+    // Two spaces before line comments normally.
 }
-std::vector<string> list{
-// Comments in braced lists describe the next element...
-"First item",
-// .. and should be aligned appropriately.
-"Second item"};
+std::vector<string> list
+{
+    // Comments in braced lists describe the next element...
+    "First item",
+    // .. and should be aligned appropriately.
+    "Second item"
+};
 DoSomething(); /* For trailing block comments, one space is fine. */
 ```
 
@@ -2073,15 +1826,14 @@ CalculateProduct(values, options, /*completion_callback=*/nullptr);
 比较这样的注释:
 
 ```cpp
-// Find the element in the vector.
+// Find the element in the vector. <-- 差: 这太明显了!
 ```
-
-<-- 差: 这太明显了!
 
 ```cpp
 auto iter = std::find(v.begin(), v.end(), element);
-if (iter != v.end()) {
-Process(element);
+if (iter != v.end()) 
+{
+    Process(element);
 }
 ```
 
@@ -2090,24 +1842,22 @@ Process(element);
 ```cpp
 // Process "element" unless it was already processed.
 auto iter = std::find(v.begin(), v.end(), element);
-if (iter != v.end()) {
-Process(element);
+if (iter != v.end()) 
+{
+    Process(element);
 }
 ```
 
 自文档化的代码根本就不需要注释. 上面例子中的注释对下面的代码来说就是毫无必要的:
 
 ```cpp
-if (!IsAlreadyProcessed(element)) {
-Process(element);
+if (!IsAlreadyProcessed(element)) 
+{
+    Process(element);
 }
 ```
 
 ### 标点, 拼写和语法
-
-*总述:*
-
-注意标点, 拼写和语法; 写的好的注释比差的要易读的多.
 
 *说明:*
 
@@ -2152,8 +1902,6 @@ TODO 注释要使用全大写的字符串 TODO, 在随后的圆括号里写上�
 
 每个人都可能有自己的代码风格和格式, 但如果一个项目中的所有人都遵循同一风格的话, 这个项目就能 更顺利地进行. 每个人未必能同意下述的每一处格式规则, 而且其中的不少规则需要一定时间的适应, 但 整个项目服从统一的编程风格是很重要的, 只有这样才能让所有人轻松地阅读和理解代码.
 
-为了帮助你正确的格式化代码, 我们写了一个 emacs 配置文件.
-
 ### 行长度
 
 *总述:*
@@ -2182,28 +1930,11 @@ TODO 注释要使用全大写的字符串 TODO, 在随后的圆括号里写上�
 
 头文件保护 可以无视该原则.
 
-### 非 ASCII 字符
-
-*总述:*
-
-尽量不使用非 ASCII 字符, 使用时必须使用 UTF-8 编码.
-
-*说明:*
-
-即使是英文, 也不应将用户界面的文本硬编码到源代码中, 因此非 ASCII 字符应当很少被用到. 特殊情况 下可以适当包含此类字符. 例如, 代码分析外部数据文件时, 可以适当硬编码数据文件中作为分隔符的非 ASCII 字符串; 更常见的是 (不需要本地化的) 单元测试代码可能包含非 ASCII 字符串. 此类情况下, 应 使用 UTF-8 编码, 因为很多工具都可以理解和处理 UTF-8 编码.
-
-十六进制编码也可以, 能增强可读性的情况下尤其鼓励——比如 "\xEF\xBB\xBF", 或者更简洁地写作 u8"\uFEFF", 在 Unicode 中是 零宽度无间断的间隔符号, 如果不用十六进制直接放在 UTF-8 格式的源 文件中, 是看不到的.
-
-使用 u8 前缀把带 uXXXX 转义序列的字符串字面值编码成 UTF-8. 不要用在本身就带 UTF-8 字符的字
-符串字面值上, 因为如果编译器不把源代码识别成 UTF-8, 输出就会出错.
-
-别用 C++11 的 char16_t 和 char32_t, 它们和 UTF-8 文本没有关系, wchar_t 同理, 除非你写的代码 要调用 Windows API, 后者广泛使用了 wchar_t.
-
 ### 空格还是制表位
 
 *总述:*
 
-只使用空格, 每次缩进 2 个空格.
+只使用空格, 每次缩进 4 个空格.
 
 *说明:*
 
@@ -2220,9 +1951,10 @@ TODO 注释要使用全大写的字符串 TODO, 在随后的圆括号里写上�
 函数看上去像这样:
 
 ```cpp
-ReturnType ClassName::FunctionName(Type par_name1, Type par_name2) {
-DoSomething();
-...
+ReturnType ClassName::FunctionName(Type par_name1, Type par_name2) 
+{
+    DoSomething();
+    ...
 }
 ```
 
@@ -2230,8 +1962,9 @@ DoSomething();
 
 ```cpp
 ReturnType ClassName::ReallyLongFunctionName(Type par_name1, Type par_name2,
-Type par_name3) {
-DoSomething();
+                                             Type par_name3) 
+{
+    DoSomething();
 ...
 }
 ```
@@ -2240,12 +1973,13 @@ DoSomething();
 
 ```cpp
 ReturnType LongClassName::ReallyReallyReallyLongFunctionName(
-Type par_name1,
+    Type par_name1,
 // 4 space indent
-Type par_name2,
-Type par_name3) {
-DoSomething();
-// 2 space indent
+    Type par_name2,
+    Type par_name3) 
+{
+    DoSomething();
+//4 space indent
 ...
 }
 ```
@@ -2259,35 +1993,34 @@ DoSomething();
 - 左圆括号总是和函数名在同一行.
 - 函数名和左圆括号间永远没有空格.
 - 圆括号与参数间没有空格.
-- 左大括号总在最后一个参数同一行的末尾处, 不另起新行.
 - 右大括号总是单独位于函数最后一行, 或者与左大括号同一行.
-- 右圆括号和左大括号间总是有一个空格.
 - 所有形参应尽可能对齐.
-- 缺省缩进为 2 个空格.
-- 换行后的参数保持 4 个空格的缩进.
 
 未被使用的参数, 或者根据上下文很容易看出其用途的参数, 可以省略参数名:
 
 ```cpp
-class Foo {
+class Foo 
+{
 public:
-Foo(Foo&&);
-Foo(const Foo&);
-Foo& operator=(Foo&&);
-Foo& operator=(const Foo&);
+    Foo(Foo&&);
+    Foo(const Foo&);
+    Foo& operator=(Foo&&);
+    Foo& operator=(const Foo&);
 };
 ```
 
 未被使用的参数如果其用途不明显的话, 在函数定义处将参数名注释起来:
 
 ```cpp
-class Shape {
+class Shape 
+{
 public:
-virtual void Rotate(double radians) = 0;
+    virtual void Rotate(double radians) = 0;
 };
-class Circle : public Shape {
+class Circle : public Shape 
+{
 public:
-void Rotate(double radians) override;
+    void Rotate(double radians) override;
 };
 void Circle::Rotate(double /*radians*/) {}
 // 差 - 如果将来有人要实现, 很难猜出变量的作用.
@@ -2317,7 +2050,7 @@ auto add_to_x = [&x](int n) { x += n; };
 std::set<int> blacklist = {7, 8, 9};
 std::vector<int> digits = {3, 9, 1, 8, 4, 7, 1};
 digits.erase(std::remove_if(digits.begin(), digits.end(), [&blacklist](int i) {
-return blacklist.find(i) != blacklist.end();
+    return blacklist.find(i) != blacklist.end();
 }),
 digits.end());
 ```
@@ -2340,20 +2073,22 @@ bool retval = DoSomething(argument1, argument2, argument3);
 
 ```cpp
 bool retval = DoSomething(averyveryveryverylongargument1,
-argument2, argument3);
+                          argument2, argument3);
 ```
 
 参数也可以放在次行, 缩进四格:
 
 ```cpp
-if (...) {
+if (...) 
+{
 ...
 ...
-if (...) {
-DoSomething(
-argument1, argument2,
-// 4 空格缩进
-argument3, argument4);
+if (...) 
+{
+    DoSomething(
+        argument1, argument2,
+        // 4 空格缩进
+        argument3, argument4);
 }
 ```
 
@@ -2367,9 +2102,8 @@ bool retval = DoSomething(my_heuristic, x, y, z);
 或者放着不管, 补充上注释:
 
 ```cpp
-bool retval = DoSomething(scores[x] * y + bases[x],
-// Score heuristic.
-x, y, z);
+bool retval = DoSomething(scores[x] * y + bases[x], // Score heuristic.
+                         x, y, z);
 ```
 
 如果某参数独立成行, 对可读性更有帮助的话, 那也可以如此做. 参数的格式处理应当以可读性而非其他 作为最重要的原则.
@@ -2379,8 +2113,8 @@ x, y, z);
 ```cpp
 // 通过 3x3 矩阵转换 widget.
 my_widget.Transform(x1, x2, x3,
-y1, y2, y3,
-z1, z2, z3);
+                    y1, y2, y3,
+                    z1, z2, z3);
 ```
 
 ### 列表初始化格式
@@ -2393,39 +2127,6 @@ z1, z2, z3);
 
 如果列表初始化伴随着名字, 比如类型或变量名, 格式化时将将名字视作函数调用名, {} 视作函数调用的 括号. 如果没有名字, 就视作名字长度为零.
 
-```cpp
-// 一行列表初始化示范.
-return {foo, bar};
-functioncall({foo, bar});
-pair<int, int> p{foo, bar};
-// 当不得不断行时.
-SomeFunction(
-{"assume a zero-length name before {"},
-// 假设在 { 前有长度为零的名字.
-some_other_function_parameter);
-SomeType variable{
-some, other, values,
-{"assume a zero-length name before {"},
-// 假设在 { 前有长度为零的名字.
-SomeOtherType{
-"Very long string requiring the surrounding breaks.",
-// 非常长的字符串, 前后都需要断行.
-some, other values},
-SomeOtherType{"Slightly shorter string",
-// 稍短的字符串.
-some, other, values}};
-SomeType variable{
-"This is too long to fit all in one line"};
-MyType m = {
-// 字符串过长, 因此无法放在同一行.
-// 注意了, 您可以在 { 前断行.
-superlongvariablename1,
-superlongvariablename2,
-{short, interior, list},
-{interiorwrappinglist,
-interiorwrappinglist2}};
-```
-
 ### 条件语句
 
 *总述:*
@@ -2437,14 +2138,17 @@ interiorwrappinglist2}};
 对基本条件语句有两种可以接受的格式. 一种在圆括号和条件之间有空格, 另一种没有. 最常见的是没有空格的格式. 哪一种都可以, 最重要的是 保持一致. 如果你是在修改一个文件, 参考当前 已有格式. 如果是写新的代码, 参考目录下或项目中其它文件. 还在犹豫的话, 就不要加空格了.
 
 ```cpp
-if (condition) {
+if (condition) 
+{
 ...
 // 圆括号里没有空格.
-// 2 空格缩进.
+// 4 空格缩进.
 // else 与 if 的右括号同一行.
-} else if (...) {
+} else if (...) 
+{
 ...
-} else {
+} else 
+{
 ...
 }
 ```
@@ -2452,11 +2156,13 @@ if (condition) {
 如果你更喜欢在圆括号内部加空格:
 
 ```cpp
-if ( condition ) {
+if ( condition ) 
+{
 ...
 // 圆括号与空格紧邻 - 不常见
-// 2 空格缩进.
-} else {
+// 4 空格缩进.
+} else 
+{
 // else 与 if 的右括号同一行.
 ...
 }
@@ -2466,9 +2172,8 @@ if ( condition ) {
 
 ```cpp
 if(condition) // 差 - IF 后面没空格.
-if (condition){ // 差 - { 前面没空格.
-if(condition){ // 变本加厉地差.
-if (condition) { // 好 - IF 和 { 都与空格紧邻.
+if (condition) 
+{ // 好 - IF 和 { 都与空格紧邻.
 ```
 
 如果能增强可读性, 简短的条件语句允许写在同一行. 只有当语句简单并且没有使用 else 子句时使用:
@@ -2491,11 +2196,12 @@ else DoThat();
 
 ```cpp
 if (condition)
-DoSomething();
-// 2 空格缩进.
-if (condition) {
-DoSomething();
-// 2 空格缩进.
+    DoSomething();
+// 4 空格缩进.
+if (condition) 
+{
+    DoSomething();
+// 4 空格缩进.
 }
 ```
 
@@ -2503,21 +2209,24 @@ DoSomething();
 
 ```cpp
 // 不可以这样子 - IF 有大括号 ELSE 却没有.
-if (condition) {
-foo;
+if (condition) 
+{
+    foo;
 } else
-bar;
+    bar;
 // 不可以这样子 - ELSE 有大括号 IF 却没有.
 if (condition)
-foo;
+    foo;
 else {
-bar;
+    bar;
 }
 // 只要其中一个分支用了大括号, 两个分支都要用上大括号.
-if (condition) {
-foo;
-} else {
-bar;
+if (condition) 
+{
+    foo;
+} else 
+{
+    bar;
 }
 ```
 
@@ -2534,20 +2243,23 @@ switch 语句中的 case 块可以使用大括号也可以不用, 取决于你�
 如果有不满足 case 条件的枚举值, switch 应该总是包含一个 default 匹配 (如果有输入值没有 case 去 处理, 编译器将给出 warning). 如果 default 应该永远执行不到, 简单的加条 assert:
 
 ```cpp
-switch (var) {
-case 0: {
-...
-// 2 空格缩进
-// 4 空格缩进
-break;
-}
-case 1: {
-...
-break;
-}
-default: {
-assert(false);
-}
+switch (var) 
+{
+    case 0: 
+    {
+        ...
+        // 4 空格缩进
+        break;
+    }
+    case 1: 
+    {
+        ...
+        break;
+    }
+    default: 
+    {
+        assert(false);
+    }
 }
 ```
 
@@ -2555,16 +2267,18 @@ assert(false);
 
 ```cpp
 for (int i = 0; i < kSomeNumber; ++i)
-printf("I love you\n");
-for (int i = 0; i < kSomeNumber; ++i) {
-printf("I take it back\n");
+    printf("I love you\n");
+for (int i = 0; i < kSomeNumber; ++i) 
+{
+    printf("I take it back\n");
 }
 ```
 
 空循环体应使用 {} 或 continue, 而不是一个简单的分号.
 
 ```cpp
-while (condition) {
+while (condition) 
+{
 // 反复循环直到条件失效.
 }
 for (int i = 0; i < kSomeNumber; ++i) {}// 可 - 空循环体.
@@ -2612,26 +2326,6 @@ const string & str;
 ```
 
 在单个文件内要保持风格一致, 所以, 如果是修改现有文件, 要遵照该文件的风格.
-
-### 布尔表达式
-
-*总述:*
-
-如果一个布尔表达式超过标准行宽, 断行方式要统一一下.
-
-*说明:*
-
-下例中, 逻辑与 (&&) 操作符总位于行尾:
-
-```cpp
-if (this_one_thing > this_other_thing &&
-a_third_thing == a_fourth_thing &&
-yet_another && last_one) {
-...
-}
-```
-
-注意, 上例的逻辑与 (&&) 操作符均位于行尾. 这个格式在 Google 里很常见, 虽然把所有操作符放在开头 也可以. 可以考虑额外插入圆括号, 合理使用的话对增强可读性是很有帮助的. 此外, 直接用符号形式的 操作符, 比如 && 和 ~, 不要用词语形式的 and 和 compl.
 
 ### 函数返回值
 
@@ -2698,25 +2392,28 @@ int pi{3.14}; // 编译错误: 缩窄转换.
 
 ```cpp
 // 好 - 指令从行首开始
-if (lopsided_score) {
+if (lopsided_score) 
+{
 #if DISASTER_PENDING
-// 正确 - 从行首开始
-DropEverything();
-// 非必要 - # 后跟空格
+    // 正确 - 从行首开始
+    DropEverything();
+    // 非必要 - # 后跟空格
 # if NOTIFY
-NotifyClient();
+    NotifyClient();
 # endif
 #endif
-BackToNormal();
+    BackToNormal();
 }
+```
+
+```cpp
 // 差 - 指令缩进
-if (lopsided_score) {
-#if DISASTER_PENDING
-// 差 - "#if" 应该放在行开头
-DropEverything();
-// 差 - "#endif" 不要缩进
-#endif
-BackToNormal();
+if (lopsided_score) 
+{
+    #if DISASTER_PENDING  // 差 - "#if" 应该放在行开头
+    DropEverything();
+    #endif  // 差 - "#endif" 不要缩进
+    BackToNormal();
 }
 ```
 
@@ -2724,36 +2421,37 @@ BackToNormal();
 
 *总述:*
 
-访问控制块的声明依次序是 public:, protected:, private:, 每个都缩进 1 个空格.
+访问控制块的声明依次序是 public:, protected:, private:, 不要缩进.
 
 *说明:*
 
 类声明 (下面的代码中缺少注释, 参考类注释) 的基本格式如下:
 
 ```cpp
-class MyClass : public OtherClass {
+class MyClass : public OtherClass 
+{
 public:
-MyClass();
+    MyClass();
 // 注意有一个空格的缩进
 // 标准的两空格缩进
-explicit MyClass(int var);
-~MyClass() {}
-void SomeFunction();
-void SomeFunctionThatDoesNothing() {
-}
-void set_some_var(int var) { some_var_ = var; }
-int some_var() const { return some_var_; }
+    explicit MyClass(int var);
+    ~MyClass() {}
+    void SomeFunction();
+    void SomeFunctionThatDoesNothing() {}
+    void set_some_var(int var) { some_var_ = var; }
+    int some_var() const { return some_var_; }
+
 private:
-bool SomeInternalFunction();
-int some_var_;
-int some_other_var_;
+    bool SomeInternalFunction();
+    int some_var_;
+    int some_other_var_;
 };
 ```
 
 注意事项:
 
 - 所有基类名应在 80 列限制下尽量与子类名放在同一行.
-- 关键词 public:, protected:, private: 要缩进 1 个空格.
+- 关键词 public:, protected:, private: 不要缩进.
 - 除第一个关键词 (一般是 public) 外, 其他关键词前要空一行. 如果类比较小的话也可以不空.
 - 这些关键词后不要保留空行.
 - public 放在最前面, 然后是 protected, 最后是 private.
@@ -2763,7 +2461,7 @@ int some_other_var_;
 
 *总述:*
 
-构造函数初始化列表放在同一行或按四格缩进并排多行.
+构造函数初始化列表放在同一行或缩进并排多行.
 
 *说明:*
 
@@ -2771,56 +2469,30 @@ int some_other_var_;
 
 ```cpp
 // 如果所有变量能放在同一行:
-MyClass::MyClass(int var) : some_var_(var) {
-DoSomething();
+MyClass::MyClass(int var) : some_var_(var) 
+{
+    DoSomething();
 }
 // 如果不能放在同一行,
 // 必须置于冒号后, 并缩进 4 个空格
 MyClass::MyClass(int var)
-: some_var_(var), some_other_var_(var + 1) {
-DoSomething();
+    : some_var_(var), some_other_var_(var + 1) 
+{
+    DoSomething();
 }
 // 如果初始化列表需要置于多行, 将每一个成员放在单独的一行
 // 并逐行对齐
 MyClass::MyClass(int var)
-: some_var_(var),
-some_other_var_(var + 1) {
-// 4 space indent
-// lined up
-DoSomething();
+    : some_var_(var),
+    some
+    _other_var_(var + 1) 
+{
+    DoSomething();
 }
 // 右大括号 } 可以和左大括号 { 放在同一行
 // 如果这样做合适的话
 MyClass::MyClass(int var)
-: some_var_(var) {}
-2.10.17 9.17. 命名空间格式化
-总述
-命名空间内容不缩进.
-说明
-命名空间 不要增加额外的缩进层次, 例如:
-namespace {
-void foo() {
-// 正确. 命名空间内没有额外的缩进.
-...
-}
-}
-// namespace
-不要在命名空间内缩进:
-namespace {
-// 错, 缩进多余了.
-void foo() {
-...
-}
-}
-// namespace
-
-```
-
-声明嵌套命名空间时, 每个命名空间都独立成行.
-
-```cpp
-namespace foo {
-namespace bar {
+    : some_var_(var) {}
 ```
 
 ### 水平留白
@@ -2834,9 +2506,6 @@ namespace bar {
 通用
 
 ```cpp
-void f(bool b) {
-// 左大括号前总是有空格.
-...
 int i = 0;
 // 分号前不加空格.
 // 列表初始化中大括号内的空格是可选的.
@@ -2844,15 +2513,16 @@ int i = 0;
 int x[] = { 0 };
 int x[] = {0};
 // 继承与初始化列表中的冒号前后恒有空格.
-class Foo : public Bar {
+class Foo : public Bar 
+{
 public:
-// 对于单行函数的实现, 在大括号内加上空格
-// 然后是函数实现
-Foo(int b) : Bar(), baz_(b) {}
-void Reset() { baz_ = 0; }
-// 大括号里面是空的话, 不加空格.
-// 用括号把大括号与实现分开.
-...
+    // 对于单行函数的实现, 在大括号内加上空格
+    // 然后是函数实现
+    Foo(int b) : Bar(), baz_(b) {}
+    void Reset() { baz_ = 0; }
+    // 大括号里面是空的话, 不加空格.
+    // 用括号把大括号与实现分开.
+    ...
 ```
 
 添加冗余的留白会给其他人编辑时造成额外负担. 因此, 行尾不要留空格. 如果确定一行代码已经修改完 毕, 将多余的空格去掉; 或者在专门清理空格时去掉(尤其是在没有其他人在处理这件事的时候). 
@@ -2860,26 +2530,29 @@ void Reset() { baz_ = 0; }
 循环和条件语句
 
 ```cpp
-if (b) { // if 条件语句和循环语句关键字后均有空格.
-} else { // else 前后有空格.
+if (b) // if 条件语句和循环语句关键字后均有空格.
+{ 
+} else  // else 前后有空格.
+{ 
 }
-while (test) {}
-// 圆括号内部不紧邻空格.
-switch (i) {
-for (int i = 0; i < 5; ++i) {
-switch ( i ) { // 循环和条件语句的圆括号里可以与空格紧邻.
-if ( test ) { // 圆括号, 但这很少见. 总之要一致.
-for ( int i = 0; i < 5; ++i ) {
-for ( ; i < 5 ; ++i) {
-// 循环里内 ; 后恒有空格, ;
+while (test) {} // 圆括号内部不紧邻空格.
+switch (i) 
+for (int i = 0; i < 5; ++i) 
+switch ( i )  // 循环和条件语句的圆括号里可以与空格紧邻.
+if ( test )  // 圆括号, 但这很少见. 总之要一致.
+for ( int i = 0; i < 5; ++i ) 
+for ( ; i < 5 ; ++i) // 循环里内 ; 后恒有空格, ;
 前可以加个空格.
-switch (i) {
-case 1:
-// switch case 的冒号前无空格.
-...
-case 2: break;
-// 如果冒号有代码, 加个空格.
+switch (i) 
+{
+    case 1: // switch case 的冒号前无空格.
+    ...
+    case 2: break; // 如果冒号有代码, 加个空格.
+```
+
 操作符
+
+```cpp
 // 赋值运算符前后总是有空格.
 x = 0;
 // 其它二元操作符也前后恒有空格, 不过对于表达式的子式可以不加空格.
